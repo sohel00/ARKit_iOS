@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class RampUpVC: UIViewController, ARSCNViewDelegate {
+class RampPlacerVC: UIViewController, ARSCNViewDelegate,UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -24,7 +24,7 @@ class RampUpVC: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        let scene = SCNScene(named: "art.scnassets/quarter.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -77,4 +77,19 @@ class RampUpVC: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+    
+    @IBAction func rampBtnpressed(_ sender: UIButton) {
+        let rampPickerVC = RampPickerVC(size: CGSize(width: 250, height: 500))
+        rampPickerVC.modalPresentationStyle = .popover
+        rampPickerVC.popoverPresentationController?.delegate = self
+        present(rampPickerVC, animated: true, completion: nil)
+        rampPickerVC.popoverPresentationController?.sourceView = sender
+        rampPickerVC.popoverPresentationController?.sourceRect = sender.bounds
+    }
+    
 }

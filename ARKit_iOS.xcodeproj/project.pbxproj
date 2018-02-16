@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		7D7B3AA220356B3B00DD2D35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B3AA120356B3B00DD2D35 /* AppDelegate.swift */; };
 		7D7B3AA420356B3B00DD2D35 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D7B3AA320356B3B00DD2D35 /* art.scnassets */; };
-		7D7B3AA620356B3B00DD2D35 /* RampUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B3AA520356B3B00DD2D35 /* RampUpVC.swift */; };
+		7D7B3AA620356B3B00DD2D35 /* RampPlacerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B3AA520356B3B00DD2D35 /* RampPlacerVC.swift */; };
 		7D7B3AA920356B3B00DD2D35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7B3AA720356B3B00DD2D35 /* Main.storyboard */; };
 		7D7B3AAB20356B3B00DD2D35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D7B3AAA20356B3B00DD2D35 /* Assets.xcassets */; };
 		7D7B3AAE20356B3B00DD2D35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7B3AAC20356B3B00DD2D35 /* LaunchScreen.storyboard */; };
+		7D7B3AB7203593FF00DD2D35 /* RampPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7B3AB6203593FF00DD2D35 /* RampPickerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7D7B3A9E20356B3B00DD2D35 /* ARKit_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARKit_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D7B3AA120356B3B00DD2D35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D7B3AA320356B3B00DD2D35 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		7D7B3AA520356B3B00DD2D35 /* RampUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RampUpVC.swift; sourceTree = "<group>"; };
+		7D7B3AA520356B3B00DD2D35 /* RampPlacerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RampPlacerVC.swift; sourceTree = "<group>"; };
 		7D7B3AA820356B3B00DD2D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D7B3AAA20356B3B00DD2D35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D7B3AAD20356B3B00DD2D35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D7B3AAF20356B3B00DD2D35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D7B3AB6203593FF00DD2D35 /* RampPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RampPickerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,24 @@
 		7D7B3AA020356B3B00DD2D35 /* ARKit_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				7D7B3AB520358BEF00DD2D35 /* Controller */,
 				7D7B3AA120356B3B00DD2D35 /* AppDelegate.swift */,
 				7D7B3AA320356B3B00DD2D35 /* art.scnassets */,
-				7D7B3AA520356B3B00DD2D35 /* RampUpVC.swift */,
 				7D7B3AA720356B3B00DD2D35 /* Main.storyboard */,
 				7D7B3AAA20356B3B00DD2D35 /* Assets.xcassets */,
 				7D7B3AAC20356B3B00DD2D35 /* LaunchScreen.storyboard */,
 				7D7B3AAF20356B3B00DD2D35 /* Info.plist */,
 			);
 			path = ARKit_iOS;
+			sourceTree = "<group>";
+		};
+		7D7B3AB520358BEF00DD2D35 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7D7B3AA520356B3B00DD2D35 /* RampPlacerVC.swift */,
+				7D7B3AB6203593FF00DD2D35 /* RampPickerVC.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,7 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D7B3AA620356B3B00DD2D35 /* RampUpVC.swift in Sources */,
+				7D7B3AA620356B3B00DD2D35 /* RampPlacerVC.swift in Sources */,
+				7D7B3AB7203593FF00DD2D35 /* RampPickerVC.swift in Sources */,
 				7D7B3AA220356B3B00DD2D35 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
