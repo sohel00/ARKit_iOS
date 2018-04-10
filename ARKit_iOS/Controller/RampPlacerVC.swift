@@ -86,10 +86,15 @@ class RampPlacerVC: UIViewController, ARSCNViewDelegate,UIPopoverPresentationCon
     @IBAction func rampBtnpressed(_ sender: UIButton) {
         let rampPickerVC = RampPickerVC(size: CGSize(width: 250, height: 500))
         rampPickerVC.modalPresentationStyle = .popover
+        rampPickerVC.rampPlacerVC = self
         rampPickerVC.popoverPresentationController?.delegate = self
         present(rampPickerVC, animated: true, completion: nil)
         rampPickerVC.popoverPresentationController?.sourceView = sender
         rampPickerVC.popoverPresentationController?.sourceRect = sender.bounds
+    }
+    
+    func onRampSelected(_ rampName:String){
+        
     }
     
 }
