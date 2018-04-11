@@ -37,36 +37,23 @@ class RampPickerVC: UIViewController {
         preferredContentSize = size
         
         let camera = SCNCamera()
-        camera.usesOrthographicProjection = true
+//        camera.usesOrthographicProjection = true
         scene.rootNode.camera = camera
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         sceneView.addGestureRecognizer(tap)
         
         
-        let rotate = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(0.01*Double.pi), z: 0, duration: 0.1))
+        let pipe = Ramp.getPipe()
+        scene.rootNode.addChildNode(pipe)
+        Ramp.startRotating(node: pipe)
         
-        var obj = SCNScene(named: "art.scnassets/pipe.scn")
-        var node  = obj?.rootNode.childNode(withName: "pipe", recursively: true)!
-        node?.runAction(rotate)
-        node?.scale = SCNVector3Make(0.0022, 0.0022, 0.0022)
-        node?.position = SCNVector3Make(-1, 0.8, -1)
-        scene.rootNode.addChildNode(node!)
+        let pyramid = Ramp.getPyramid()
+        scene.rootNode.addChildNode(pyramid)
+        Ramp.startRotating(node: pyramid)
         
-        obj = SCNScene(named: "art.scnassets/pyramid.scn")
-        node  = obj?.rootNode.childNode(withName: "pyramid", recursively: true)!
-        node?.runAction(rotate)
-        node?.scale = SCNVector3Make(0.0058, 0.0058, 0.0058)
-        node?.position = SCNVector3Make(-1, -0.48, -1)
-        scene.rootNode.addChildNode(node!)
-        
-        obj = SCNScene(named: "art.scnassets/quarter.scn")
-        node  = obj?.rootNode.childNode(withName: "quarter", recursively: true)!
-        node?.runAction(rotate)
-        node?.scale = SCNVector3Make(0.0058, 0.0058, 0.0058)
-        node?.position = SCNVector3Make(-1, -2, -1)
-        scene.rootNode.addChildNode(node!)
-        
-        
+        let quarter = Ramp.getQuater()
+        scene.rootNode.addChildNode(quarter)
+        Ramp.startRotating(node: quarter)
         
     }
     
@@ -80,6 +67,4 @@ class RampPickerVC: UIViewController {
             rampPlacerVC.onRampSelected(node.name!)
         }
     }
-    
-  
 }
