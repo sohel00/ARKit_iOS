@@ -3,7 +3,7 @@
 //  ARKit_iOS
 //
 //  Created by Sohel Dhengre on 15/02/18.
-//  Copyright © 2018 Sohel Dengre. All rights reserved.
+//  Copyright © 2018 Sohel Dhengre. All rights reserved.
 //
 
 import UIKit
@@ -12,8 +12,14 @@ import ARKit
 
 class RampPlacerVC: UIViewController, ARSCNViewDelegate,UIPopoverPresentationControllerDelegate {
 
+    @IBOutlet weak var controlsStack: UIStackView!
     @IBOutlet var sceneView: ARSCNView!
-    var selectedRamp:String!
+    @IBOutlet weak var rotateBtn: UIButton!
+    @IBOutlet weak var upBtn: UIButton!
+    @IBOutlet weak var downBtn: UIButton!
+    
+    var selectedRampName:String?
+    var selectedRamp: SCNNode?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +31,21 @@ class RampPlacerVC: UIViewController, ARSCNViewDelegate,UIPopoverPresentationCon
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/quarter.scn")!
+        let scene = SCNScene(named: "art.scnassets/Main.scn")!
+        sceneView.automaticallyUpdatesLighting = true
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        let gesture1 = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(_:)))
+        let gesture2 = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(_:)))
+        let gesture3 = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(_:)))
+        gesture1.minimumPressDuration = 0.1
+        gesture2.minimumPressDuration = 0.1
+        gesture3.minimumPressDuration = 0.1
+        rotateBtn.addGestureRecognizer(gesture1)
+        upBtn.addGestureRecognizer(gesture2)
+        downBtn.addGestureRecognizer(gesture3)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,11 +121,46 @@ class RampPlacerVC: UIViewController, ARSCNViewDelegate,UIPopoverPresentationCon
     }
     
     func onRampSelected(_ rampName:String){
-        selectedRamp = rampName
+        selectedRampName = rampName
     }
     
     func placeRamp(position:SCNVector3){
         
+        if let rampName = selectedRampName {
+            controlsStack.isHidden = false
+            let ramp = Ramp.getRampByName(rampName: rampName)
+            selectedRamp = ramp
+            ramp.scale = SCNVector3Make(0.01, 0.01, 0.01)
+            sceneView.scene.rootNode.addChildNode(ramp)
+        }
+    }
+    
+    @objc func longPressGesture(_ sender:UILongPressGestureRecognizer){
+        
+        if let ramp = selectedRamp{
+            if sender.state == .ended {
+                ramp.removeAllActions()
+            } else if sender.state == .began {
+                if sender.view === rotateBtn {
+                    let rotate = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(0.08*Double.pi), z: 0, duration: 0.1))
+                    ramp.runAction(rotate)
+                } else if sender.view === upBtn {
+                    let up = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0.08, z: 0, duration: 0.1))
+                    ramp.runAction(up)
+                } else if sender.view === downBtn {
+                    let down = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: -0.08, z: 0, duration: 0.1))
+                    ramp.runAction(down)
+                }
+            }
+        }
+    }
+    
+    @IBAction func closePressed(_ sender: Any) {
+        
+        if let ramp = selectedRamp {
+            ramp.removeFromParentNode()
+            selectedRamp = nil
+        }
     }
     
 }

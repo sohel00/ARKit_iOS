@@ -3,13 +3,27 @@
 //  ARKit_iOS
 //
 //  Created by Sohel Dhengre on 10/04/18.
-//  Copyright © 2018 Sohel Dengre. All rights reserved.
+//  Copyright © 2018 Sohel Dhengre. All rights reserved.
 //
 
 import Foundation
 import ARKit
+import SceneKit
 
 class Ramp {
+    
+    class func getRampByName(rampName:String) -> SCNNode{
+        switch rampName{
+        case "pipe":
+            return Ramp.getPipe()
+        case "pyramid":
+            return Ramp.getPyramid()
+        case "quarter":
+            return Ramp.getQuater()
+        default:
+            return Ramp.getPipe()
+        }
+    }
     
     class func getPyramid() -> SCNNode {
         let obj = SCNScene(named: "art.scnassets/pipe.scn")
