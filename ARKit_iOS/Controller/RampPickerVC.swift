@@ -36,12 +36,13 @@ class RampPickerVC: UIViewController {
         sceneView.scene = scene
         preferredContentSize = size
         
-        view.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        view.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         view.layer.borderWidth = 3.0
         
         let camera = SCNCamera()
         camera.usesOrthographicProjection = true
         scene.rootNode.camera = camera
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         sceneView.addGestureRecognizer(tap)
         
